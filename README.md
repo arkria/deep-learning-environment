@@ -163,7 +163,7 @@ Some useful commands:
 You need `tensorboardX`, `sciki-image`, `seaborn`, `matplotlib` and so on. Some of them may be have been installed 
 during installation of **Torch** or **Tensorflow**, otherwise you need to `conda install` them manually.
  
-## DRL Tools
+## DRL Suites
 
 ### OpenAI baselines
 Clone the source code and follow the [tutorial](https://github.com/openai/baselines).
@@ -220,7 +220,7 @@ $ cd ~/.mujoco/mujoco200_linux/bin
 $ ./simulate ../model/humanoid.xml
 ```
 You will see.
-![Succeed](figure/mujoco.jpg)
+![Succeed](figure/mujoco.png)
 
 For some remote machine, you will not the this for the limit of hardware, but for some you could see it.
 
@@ -263,3 +263,20 @@ change another computer.
  
 - [A good tutorial](https://zhuanlan.zhihu.com/p/85833777)
 - [Remote machine](https://zhuanlan.zhihu.com/p/77020893?from_voters_page=true)
+
+### dm-control
+
+Another control environment which regardless of `mujoco_py`. The directory of `mujoco` for `dm_control` is `~/.mujoco/mujoco200_linux/`, thus you need to copy another directory
+of `mujoco`:
+```
+$ cd ~/.mujoco
+$ cp -r mujoco200 mujoco200_linux
+```
+Then you could install `dm_control`
+```
+$ pip install dm_control
+```
+
+One thing you need to notice is that the visual tools used is `OpenGL EGL`.
+First, you need to `pip install pyopengl`. Then, you need to `export PYOPENGLPLATFORM=egl`.
+By this way, you could use `dm_control`.
