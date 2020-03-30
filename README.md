@@ -50,9 +50,12 @@ After that, ``conda config --set show_channel_urls yes`` is need to show the dow
 ## Torch ,TF, CUDA and cudnn
 
 The first thing you need to do is to make sure the match of the versions among all of these softwares.
-The first step is to check the **CUDA** version corresponding with [**pytorch**](https://pytorch.org/).
+The first step is to check the **CUDA** version corresponding with [**pytorch**](https://pytorch.org/)
+and [**tensorflow match**](https://tensorflow.google.cn/install/source).
 
 ![pytorch](figure/pytorch.png)
+
+![tensorflow](figure/tf.png)
 
 The second step is to verify the **nvidia driver** version corresponding with **CUDA**.
 
@@ -70,10 +73,43 @@ software      | version
 torch         | 1.4
 CUDA          | 10.1
 nvidia driver | 418
-cudnn         | 7.5
-tensorflow-gpu| 1.4
+cudnn         | 7.6
+tensorflow-gpu| 2.1
 
 After these, you can start install them.
+
+
+### Torch
+
+The installation command depends on what virtual environment you are using. Refer [**pytorch**](https://pytorch.org/)
+ for exact command.
+ 
+### Tensorflow
+
+You are recommanded to install `tensorflow-2.1`. The differences between `version 2.0` and `version 2.1` are big. You 
+should always use tools in the newest stable version.
+
+```
+pip install tensorflow==2.1
+pip install tensorflow-gpu==2.1
+``` 
+
+When you import `tensorflow`, you may face the following warning:
+
+>2020-01-20 11:46:50.881093: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/protobuf/lib:/usr/local/lib
+>
+>2020-01-20 11:46:50.881169: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/protobuf/lib:/usr/local/lib
+>
+>2020-01-20 11:46:50.881178: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+
+It is only a warning and will not affect your usage.
+
+However, you should notice that **version mismatch problem** will not warn you in `tf` but it will do in `torch`. Thus 
+the version match work is very important. 
+
+
+#### Some blog you could refer
+-[install tf2](https://zhuanlan.zhihu.com/p/103559613)
 
 ### Nvidia driver
 You can use the following command to check the corresponding driver for your machine
@@ -87,20 +123,6 @@ sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt install nvidia-418
 ```
-
-You could watch the nvidia driver using:
-
-``nvidia-smi`` or ``watch -n 10 nvidia-smi``
-
-If the error is 
->Failed to initialize NVML: Driver/library version mismatch
-
-This is because the kernel module of the nvidia is mismatch with current driver version. Under this condition.
-restarting the machine is a good choice.
-
-Then, you can see (the version is wrong because I can't get my working station now)
-
-![smi](figure/smi.png)
 
 Some useful commands:
 
@@ -131,6 +153,21 @@ package in its memory. To install `10.1`, you need to run the following command 
 dpkg -r cuda-repo-<version>
 dpkg -P cuda-repo-<version>
 ```
+
+You could watch the nvidia driver using:
+
+``nvidia-smi`` or ``watch -n 10 nvidia-smi``
+
+If the error is 
+>Failed to initialize NVML: Driver/library version mismatch
+
+This is because the kernel module of the nvidia is mismatch with current driver version. Under this condition.
+restarting the machine is a good choice.
+
+Then, you can see (the version is wrong because I can't get my working station now)
+
+![smi](figure/smi.png)
+
 Some useful commands:
 - see the version of CUDA:
 ``cat /usr/local/cuda/version.txt``
@@ -162,6 +199,14 @@ Some useful commands:
  
 You need `tensorboardX`, `sciki-image`, `seaborn`, `matplotlib` and so on. Some of them may be have been installed 
 during installation of **Torch** or **Tensorflow**, otherwise you need to `conda install` them manually.
+
+### tensorflow-probability
+
+Firstly, do the version match. [**tfp**](https://github.com/tensorflow/probability/releases)
+
+For `tf 2.1`, the required `tfp` version is `0.9`.
+
+``pip install tensorflow-probability==0.9``
  
 ## DRL Suites
 
