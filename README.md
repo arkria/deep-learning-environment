@@ -146,6 +146,15 @@ sudo apt-get update
 sudo apt-get install cuda
 ```
 
+Then you need to add `CUDA` to your environment varibale.
+In the `~/.bashrc`, add the following context.
+```
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda
+```
+Then, ``source ~/.bashrc`` will finish the work.
+
 In fact, it would be convient to install CUDA. However, I made a mistake during my procedure.
 I tried to install `10.2` first and shut down before the last step. However, `dpkg` record the 
 package in its memory. To install `10.1`, you need to run the following command first.
@@ -207,6 +216,13 @@ Firstly, do the version match. [**tfp**](https://github.com/tensorflow/probabili
 For `tf 2.1`, the required `tfp` version is `0.9`.
 
 ``pip install tensorflow-probability==0.9``
+
+### ffmpeg
+
+```
+sudo apt-get install ffmpeg
+```
+add ``export PATH=/usr/local/ffmpeg/bin:$PATH`` in `~/.bashrc`.
  
 ## DRL Suites
 
