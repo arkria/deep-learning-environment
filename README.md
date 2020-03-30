@@ -57,7 +57,8 @@ and [**tensorflow match**](https://tensorflow.google.cn/install/source).
 
 ![tensorflow](figure/tf.png)
 
-The second step is to verify the **nvidia driver** version corresponding with **CUDA**.
+The second step is to verify the **nvidia driver** version corresponding with **CUDA**. See [**CUDA and 
+nvidia-driver match**](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html).
 
 ![drivermatch](figure/drivermatch.png)
 
