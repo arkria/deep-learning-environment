@@ -1,4 +1,4 @@
-# Environment Config
+# Environment configuration tutorial for Deep (Reinforcement) Learning [深度（强化）学习环境配置教程]
 
 To config a computer for deep learning or deep reinforcement learning, we install *cuda*, *cudnn*, *torch* and so on.
 There may be some problems during install this software. I record my process of configuring the **DL environment**. My 
